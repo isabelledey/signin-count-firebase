@@ -22,14 +22,14 @@ export interface User {
 
 export const yourCustomTypeConverter: FirestoreDataConverter<User> = {
   toFirestore(customType: User): DocumentData {
-    // Convert the YourCustomType object to a format that can be stored in Firestore
+    // Convert customType a format that can be stored in Firestore
     return {
       count: customType.count,
       id: customType.id,
     };
   },
   fromFirestore(snapshot: QueryDocumentSnapshot): User {
-    // Convert a Firestore document snapshot to a YourCustomType object
+    // Convert a Firestore doc snapshot to a customType object
     const data = snapshot.data();
     return {
       count: data['count'],
@@ -71,7 +71,7 @@ export class AppComponent {
   }
 
   incrementCounter(transaction: Transaction) {
-    // Get the document reference
+    // Get the document refs
     const docRef = doc(this.firestore, `users/${this.deviceId}`);
 
     // Get the current value of the field
